@@ -1048,17 +1048,13 @@ void eEPGCache::load()
 			if (renameResult) eDebug("[eEPGCache] Failed to rename 'epg.dat' back.");
 		}
 	}
-	if(m_debug)
-	{
-		eDebug("[eEPGCache] Loaded %i bytes for EPG cache.", eventData::CacheSize);
-		eDebug("[eEPGCache] Finishing loading EPG cache.");
-	}
+	eDebug("[eEPGCache] Loaded %i bytes for EPG cache.", eventData::CacheSize);
+	eDebug("[eEPGCache] Finishing loading EPG cache.");
 }
 
 void eEPGCache::save()
 {
-	if(m_debug)
-		eDebug("[eEPGCache] Starting EPG cache save.");
+	eDebug("[eEPGCache] Starting EPG cache save.");
 
 	if (m_saveepg)
 	{
@@ -1105,10 +1101,9 @@ void eEPGCache::save()
 			free(buf);
 			return;
 		}
-	
+
+		eDebug("[eEPGCache] Saving %i bytes in EPG cache.", eventData::CacheSize);
 		// check for enough free space on storage
-		if(m_debug)
-			eDebug("[eEPGCache] Saving %i bytes in EPG cache.", eventData::CacheSize);
 		tmp=st.f_bfree;
 		tmp*=st.f_bsize;
 		if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
