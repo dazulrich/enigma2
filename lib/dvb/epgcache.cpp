@@ -1049,7 +1049,10 @@ void eEPGCache::load()
 		}
 	}
 	if(m_debug)
+	{
+		eDebug("[eEPGCache] Loaded %i bytes for EPG cache.", eventData::CacheSize);
 		eDebug("[eEPGCache] Finishing loading EPG cache.");
+	}
 }
 
 void eEPGCache::save()
@@ -1104,6 +1107,8 @@ void eEPGCache::save()
 		}
 	
 		// check for enough free space on storage
+		if(m_debug)
+			eDebug("[eEPGCache] Saving %i bytes in EPG cache.", eventData::CacheSize);
 		tmp=st.f_bfree;
 		tmp*=st.f_bsize;
 		if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
